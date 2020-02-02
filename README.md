@@ -10,6 +10,8 @@ This project is in early stage active development.
 
 [x] Get the user's location and show on a map
 
+[ ] Implement ChangeNotifierProvider
+
 [ ] Implement the storage API
 
 [ ] Create recording widget
