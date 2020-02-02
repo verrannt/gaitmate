@@ -4,11 +4,17 @@ import 'package:sensors/sensors.dart';
 //import 'package:livemap/livemap.dart';
 import 'package:latlong/latlong.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:provider/provider.dart';
 //import 'package:location/location.dart';
 import 'dart:async';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => SensorModel(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -32,46 +38,26 @@ class MyHomePage extends StatefulWidget{
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  // List holding subscription stream
   List<StreamSubscription<dynamic>> _streamSubscriptions =
-  <StreamSubscription<dynamic>>[];
-  // Lists holding sensor values
-  List<double> _accelerometerValues;
-  List<double> _userAccelerometerValues;
-  List<double> _gyroscopeValues;
-  // List holding geolocation values
-  List<double> _geoLocationValues;
+    <StreamSubscription<dynamic>>[];
 
   var geolocator = Geolocator();
-  var locationOptions = LocationOptions(accuracy: LocationAccuracy.high, distanceFilter: 10);
+  var locationOptions = LocationOptions(
+      accuracy: LocationAccuracy.high,
+      distanceFilter: 10);
 
   @override
   Widget build(BuildContext context) {
 
-    var markers = <Marker>[
-      Marker(
-        width: 80.0,
-        height: 80.0,
-        point: LatLng(51.5, -0.09),
-        builder: (ctx) => Container(
-          child: FlutterLogo(
-            colors: Colors.blue,
-            key: ObjectKey(Colors.blue),
-          ),
-        ),
-      ),
-    ];
-
     // Format sensor values to list of strings
-    final List<String> accelerometer =
-      _accelerometerValues?.map((double v) => v.toStringAsFixed(1))?.toList();
-    final List<String> gyroscope =
-      _gyroscopeValues?.map((double v) => v.toStringAsFixed(1))?.toList();
-    final List<String> userAccelerometer =
-      _userAccelerometerValues?.map((double v) => v.toStringAsFixed(1))?.toList();
-    final List<String> geoLocation =
-      _geoLocationValues?.map((double v) => v.toStringAsFixed(1))?.toList();
-
+    /*final List<String> accelerometer = _accelerometerValues
+      ?.map((double v) => v.toStringAsFixed(1))?.toList();
+    final List<String> gyroscope = _gyroscopeValues
+      ?.map((double v) => v.toStringAsFixed(1))?.toList();
+    final List<String> userAccelerometer = _userAccelerometerValues
+      ?.map((double v) => v.toStringAsFixed(1))?.toList();
+    final List<String> geoLocation = _geoLocationValues
+      ?.map((double v) => v.toStringAsFixed(1))?.toList();*/
 
     return Scaffold(
       appBar: AppBar(
@@ -93,8 +79,14 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Text('Accelerometer: $accelerometer')
-                ]
+                  Consumer<SensorModel>(
+                    builder: (context, sensors, child) {
+                      final List<String> accelerometer = sensors._accelerometerValues
+                          ?.map((double v) => v.toStringAsFixed(1))?.toList();
+                      return Text('Accelerometer: $accelerometer');
+                    },
+                  ),
+                ],
               ),
             ),
             Padding(
@@ -102,8 +94,14 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Text('UserAccelerometer: $userAccelerometer')
-                ]
+                  Consumer<SensorModel>(
+                    builder: (context, sensors, child) {
+                      final List<String> userAccelerometer = sensors._userAccelerometerValues
+                          ?.map((double v) => v.toStringAsFixed(1))?.toList();
+                      return Text('UserAccelerometer: $userAccelerometer');
+                    },
+                  ),
+                ],
               ),
             ),
             Padding(
@@ -111,8 +109,14 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Text('Gyroscope: $gyroscope')
-                ]
+                  Consumer<SensorModel>(
+                    builder: (context, sensors, child) {
+                      final List<String> gyroscope = sensors._gyroscopeValues
+                          ?.map((double v) => v.toStringAsFixed(1))?.toList();
+                      return Text('Gyroscope: $gyroscope');
+                    },
+                  ),
+                ],
               ),
             ),
             Padding(
@@ -125,7 +129,13 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Text('Geolocation: $geoLocation')
+                  Consumer<SensorModel>(
+                    builder: (context, sensors, child) {
+                      final List<String> geoLocation = sensors._geoLocationValues
+                          ?.map((double v) => v.toStringAsFixed(1))?.toList();
+                      return Text('Geolocation: $geoLocation');
+                    },
+                  ),
                 ],
               ),
               padding: const EdgeInsets.only(top: 10.0, bottom: 20.0)
@@ -174,32 +184,65 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
 
     // Listeners for sensor changes
-    _streamSubscriptions.add(accelerometerEvents.listen((AccelerometerEvent event) {
-      setState(() {
-        _accelerometerValues = <double>[event.x, event.y, event.z];
-      });
-    }));
-    _streamSubscriptions.add(gyroscopeEvents.listen((GyroscopeEvent event) {
-      setState(() {
-        _gyroscopeValues = <double>[event.x, event.y, event.z];
-      });
-    }));
-    _streamSubscriptions.add(userAccelerometerEvents.listen((UserAccelerometerEvent event) {
-      setState(() {
-        _userAccelerometerValues = <double>[event.x, event.y, event.z];
-      });
-    }));
+    _streamSubscriptions.add(
+      accelerometerEvents.listen((AccelerometerEvent event) {
+        Provider.of<SensorModel>(context).setAccelerometerValues(
+          <double>[event.x, event.y, event.z]);
+      })
+    );
+    _streamSubscriptions.add(
+      userAccelerometerEvents.listen((UserAccelerometerEvent event) {
+        Provider.of<SensorModel>(context).setUserAccelerometerValues(
+          <double>[event.x, event.y, event.z]);
+      })
+    );
+    _streamSubscriptions.add(
+      gyroscopeEvents.listen((GyroscopeEvent event) {
+        Provider.of<SensorModel>(context).setGyroscopeValues(
+          <double>[event.x, event.y, event.z]);
+        /*setState(() {
+          _userAccelerometerValues = <double>[event.x, event.y, event.z];
+        });*/
+      })
+    );
     // Listener for location change
-    _streamSubscriptions.add(geolocator.getPositionStream(locationOptions).listen((Position position) {
-      setState(() {
-        _geoLocationValues = <double>[position.latitude, position.longitude];
-      });
-      print(position == null ? 'Unknown' : position.latitude.toString() + ', ' + position.longitude.toString());
-    }));
+    _streamSubscriptions.add(
+      geolocator.getPositionStream(locationOptions).listen((Position position) {
+        Provider.of<SensorModel>(context).setGyroscopeValues(
+          <double>[position.latitude, position.longitude]);
+      })
+    );
 
 
     // mapController = MapController();
     // liveMapController = LiveMapController(mapController: mapController);
+  }
+}
+
+class SensorModel extends ChangeNotifier {
+  List<double> _accelerometerValues;
+  List<double> _userAccelerometerValues;
+  List<double> _gyroscopeValues;
+  List<double> _geoLocationValues;
+
+  void setAccelerometerValues(List values) {
+    _accelerometerValues = values;
+    notifyListeners();
+  }
+
+  void setUserAccelerometerValues(List values) {
+    _accelerometerValues = values;
+    notifyListeners();
+  }
+
+  void setGyroscopeValues(List values) {
+    _accelerometerValues = values;
+    notifyListeners();
+  }
+
+  void setLocationValues(List values) {
+    _geoLocationValues = values;
+    notifyListeners();
   }
 }
 

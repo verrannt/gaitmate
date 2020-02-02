@@ -27,6 +27,7 @@ dependencies:
   geolocator: ^5.2.0
   # livemap:
   sensors:
+  provider: ^3.0.0
 
 dev_dependencies:
   flutter_test:
