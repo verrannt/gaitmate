@@ -6,6 +6,12 @@ class SensorModel extends ChangeNotifier {
   List<double> _gyroscopeValues;
   List<double> _geoLocationValues;
 
+  List<double> get accelerometerValues => _accelerometerValues;
+  List<double> get userAccelerometerValues => _userAccelerometerValues;
+  List<double> get gyroscopeValues => _gyroscopeValues;
+  List<double> get locationValues => _geoLocationValues;
+
+
   void setAccelerometerValues(List values) {
     _accelerometerValues = values;
     notifyListeners();

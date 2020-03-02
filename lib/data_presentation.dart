@@ -29,7 +29,7 @@ class _DataPresentationState extends State<DataPresentation> {
             children: <Widget>[
               Consumer<SensorModel>(
                 builder: (context, sensors, child) {
-                  final List<String> accelerometer = sensors._accelerometerValues
+                  final List<String> accelerometer = sensors.accelerometerValues
                       ?.map((double v) => v.toStringAsFixed(1))?.toList();
                   return Text('Accelerometer: $accelerometer');
                 },
@@ -44,7 +44,7 @@ class _DataPresentationState extends State<DataPresentation> {
             children: <Widget>[
               Consumer<SensorModel>(
                 builder: (context, sensors, child) {
-                  final List<String> userAccelerometer = sensors._userAccelerometerValues
+                  final List<String> userAccelerometer = sensors.userAccelerometerValues
                       ?.map((double v) => v.toStringAsFixed(1))?.toList();
                   return Text('UserAccelerometer: $userAccelerometer');
                 },
@@ -59,7 +59,7 @@ class _DataPresentationState extends State<DataPresentation> {
             children: <Widget>[
               Consumer<SensorModel>(
                 builder: (context, sensors, child) {
-                  final List<String> gyroscope = sensors._gyroscopeValues
+                  final List<String> gyroscope = sensors.gyroscopeValues
                       ?.map((double v) => v.toStringAsFixed(1))?.toList();
                   return Text('Gyroscope: $gyroscope');
                 },
@@ -79,7 +79,7 @@ class _DataPresentationState extends State<DataPresentation> {
               children: <Widget>[
                 Consumer<SensorModel>(
                   builder: (context, sensors, child) {
-                    final List<String> geoLocation = sensors._geoLocationValues
+                    final List<String> geoLocation = sensors.locationValues
                         ?.map((double v) => v.toStringAsFixed(1))?.toList();
                     return Text('Geolocation: $geoLocation');
                   },
