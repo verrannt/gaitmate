@@ -93,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // Listener for location change
     _streamSubscriptions.add(
         geolocator.getPositionStream(locationOptions).listen((Position position) {
-          Provider.of<SensorModel>(context).setGyroscopeValues(
+          Provider.of<SensorModel>(context).setLocationValues(
               <double>[position.latitude, position.longitude]);
         })
     );
