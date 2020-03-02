@@ -18,12 +18,12 @@ class SensorModel extends ChangeNotifier {
   }
 
   void setUserAccelerometerValues(List values) {
-    _accelerometerValues = values;
+    _userAccelerometerValues = values;
     notifyListeners();
   }
 
   void setGyroscopeValues(List values) {
-    _accelerometerValues = values;
+    _gyroscopeValues = values;
     notifyListeners();
   }
 
