@@ -18,7 +18,7 @@ class MyHomePage extends StatefulWidget{
 class _MyHomePageState extends State<MyHomePage> {
 
   List<StreamSubscription<dynamic>> _streamSubscriptions =
-  <StreamSubscription<dynamic>>[];
+    <StreamSubscription<dynamic>>[];
 
   var geolocator = Geolocator();
   var locationOptions = LocationOptions(
@@ -47,11 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: EdgeInsets.all(0.0),
         child: Column(
             children: <Widget>[
-              DataPresentation(
-
-              ),
-              MyBottomBar(
-              ),
+              DataPresentation(),
+              MyBottomBar(),
             ]
         ),
       ),
@@ -61,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void dispose() {
     super.dispose();
-    // Dispose of sensor subscription
+    // Dispose of sensor stream subscription
     for (StreamSubscription<dynamic> subscription in _streamSubscriptions) {
       subscription.cancel();
     }
