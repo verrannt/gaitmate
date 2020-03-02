@@ -18,3 +18,4 @@ This project is in early stage active development.
 
 [ ] Create past recording overview
 
+[ ] Do UI clean-up
