@@ -62,8 +62,6 @@ class _MyHomePageState extends State<MyHomePage> {
     for (StreamSubscription<dynamic> subscription in _streamSubscriptions) {
       subscription.cancel();
     }
-    // Dispose of livemap
-    // liveMapController.dispose();
   }
 
   @override
@@ -99,8 +97,5 @@ class _MyHomePageState extends State<MyHomePage> {
               <double>[position.latitude, position.longitude]);
         })
     );
-
-    // mapController = MapController();
-    // liveMapController = LiveMapController(mapController: mapController);
   }
 }
