@@ -44,14 +44,13 @@ class _MyHomePageState extends State<MyHomePage> {
               Icons.android),
           title: const Text('GaitMate')),
       body: Container(
-        padding: EdgeInsets.all(0.0),
         child: Column(
             children: <Widget>[
               DataPresentation(),
-              MyBottomBar(),
             ]
         ),
       ),
+      bottomNavigationBar: MyBottomBar(),
     );
   }
 
