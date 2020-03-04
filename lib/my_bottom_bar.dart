@@ -9,10 +9,20 @@ class MyBottomBar extends StatefulWidget {
 
 class _MyBottomBarState extends State<MyBottomBar> {
 
-  var _isRecording;
+  List<String> _activityOptions = ['walking', 'running', 'cycling'];
+  List<DropdownMenuItem<String>> _activityDropdownMenuItems = List();
 
-  void _selectItem(String name) {
-    Navigator.pop(context);
+  @override
+  void initState() {
+    for (String option in _activityOptions) {
+      _activityDropdownMenuItems.add(
+          DropdownMenuItem(
+              value: option,
+              child: Text(option, style: TextStyle(fontSize: 16.0))
+          )
+      );
+    }
+    super.initState();
   }
 
   void _launchPastRecordings() {
