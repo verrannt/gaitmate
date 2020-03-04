@@ -96,6 +96,13 @@ class _MyBottomBarState extends State<MyBottomBar> {
       }
     );
   }
+
+  void _startRecording(String selectedActivity) {
+    // Activate recordingState of RecorderModel and set activity type
+    Provider.of<SensorRecorderModel>(context, listen: false)
+      .startRecording(selectedActivity);
+    // Exit modal dialog
+    Navigator.pop(context);
   }
 
   void _confirmRecordingStop() {
@@ -155,13 +162,6 @@ class _MyBottomBarState extends State<MyBottomBar> {
   }
 
 
-  void _startRecording() {
-    // TODO
-    // 1. record sensors into variable
-    setState(() {
-      _isRecording = true;
-    });
-    Navigator.pop(context);
   }
 
   void _stopRecording() {
