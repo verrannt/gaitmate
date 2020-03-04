@@ -1,21 +1,11 @@
 # GaitMate
 
-A flutter app that records user's motion activity upon request by the user and stores it locally when the recording is finished. The user can specify an activity name for the recorded activity so that the data can be used to train machine learning models to recognize human activities from smartphone sensor data.
+### Easily record smartphone sensor data
 
-This project is in early stage active development.
+A flutter app that records user's motion activity via smartphone sensor data and stores it locally when the recording is finished. The activity type can be specified when starting the recording and will be used in the naming of the stored recording, along with current date-time. It thus allows easy creation of time-series data of motion activity that can be used to train machine learning models to recognize motion activity from sensor data.
 
-## Features
+## Future Features
 
-[x] Recognize and display smartphone sensor data
-
-[x] Get the user's location and show on a map
-
-[ ] Implement ChangeNotifierProvider
-
-[ ] Implement the storage API
-
-[ ] Create recording widget
-
-[ ] Create past recording overview
-
-[ ] Do UI clean-up
+* Share recordings from within app
+* Delete recordings from within app
+* Specify custom activity names
