@@ -28,6 +28,8 @@ dependencies:
   # livemap:
   sensors:
   provider: ^3.0.0
+  csv: ^4.0.3
+  flutter_share: ^1.0.2
 
 dev_dependencies:
   flutter_test:
