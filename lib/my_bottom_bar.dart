@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gaitmate/past_recordings.dart';
+import 'package:gaitmate/models/sensor_recorder_model.dart';
 
 class MyBottomBar extends StatefulWidget {
   @override

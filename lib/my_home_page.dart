@@ -5,7 +5,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
 
 import 'package:gaitmate/my_bottom_bar.dart';
-import 'package:gaitmate/sensor_model.dart';
+import 'package:gaitmate/models/sensor_recorder_model.dart';
 import 'package:gaitmate/data_presentation.dart';
 
 class MyHomePage extends StatefulWidget{
@@ -71,19 +71,19 @@ class _MyHomePageState extends State<MyHomePage> {
     // Listeners for sensor changes
     _streamSubscriptions.add(
         accelerometerEvents.listen((AccelerometerEvent event) {
-          Provider.of<SensorModel>(context).setAccelerometerValues(
+          Provider.of<SensorRecorderModel>(context).setAccelerometerValues(
               <double>[event.x, event.y, event.z]);
         })
     );
     _streamSubscriptions.add(
         userAccelerometerEvents.listen((UserAccelerometerEvent event) {
-          Provider.of<SensorModel>(context).setUserAccelerometerValues(
+          Provider.of<SensorRecorderModel>(context).setUserAccelerometerValues(
               <double>[event.x, event.y, event.z]);
         })
     );
     _streamSubscriptions.add(
         gyroscopeEvents.listen((GyroscopeEvent event) {
-          Provider.of<SensorModel>(context).setGyroscopeValues(
+          Provider.of<SensorRecorderModel>(context).setGyroscopeValues(
               <double>[event.x, event.y, event.z]);
           /*setState(() {
           _userAccelerometerValues = <double>[event.x, event.y, event.z];
@@ -93,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // Listener for location change
     _streamSubscriptions.add(
         geolocator.getPositionStream(locationOptions).listen((Position position) {
-          Provider.of<SensorModel>(context).setLocationValues(
+          Provider.of<SensorRecorderModel>(context).setLocationValues(
               <double>[position.latitude, position.longitude]);
         })
     );

@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 
-import 'package:gaitmate/sensor_model.dart';
+import 'package:gaitmate/models/sensor_recorder_model.dart';
 
 
 class DataPresentation extends StatefulWidget {
@@ -27,7 +27,7 @@ class _DataPresentationState extends State<DataPresentation> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Consumer<SensorModel>(
+              Consumer<SensorRecorderModel>(
                 builder: (context, sensors, child) {
                   final List<String> accelerometer = sensors.accelerometerValues
                       ?.map((double v) => v.toStringAsFixed(1))?.toList();
@@ -42,7 +42,7 @@ class _DataPresentationState extends State<DataPresentation> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Consumer<SensorModel>(
+              Consumer<SensorRecorderModel>(
                 builder: (context, sensors, child) {
                   final List<String> userAccelerometer = sensors.userAccelerometerValues
                       ?.map((double v) => v.toStringAsFixed(1))?.toList();
@@ -57,7 +57,7 @@ class _DataPresentationState extends State<DataPresentation> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Consumer<SensorModel>(
+              Consumer<SensorRecorderModel>(
                 builder: (context, sensors, child) {
                   final List<String> gyroscope = sensors.gyroscopeValues
                       ?.map((double v) => v.toStringAsFixed(1))?.toList();
@@ -77,7 +77,7 @@ class _DataPresentationState extends State<DataPresentation> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Consumer<SensorModel>(
+                Consumer<SensorRecorderModel>(
                   builder: (context, sensors, child) {
                     final List<String> geoLocation = sensors.locationValues
                         ?.map((double v) => v.toStringAsFixed(1))?.toList();
