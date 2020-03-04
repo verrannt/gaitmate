@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+/// Own modules
 import 'package:gaitmate/past_recordings.dart';
 import 'package:gaitmate/models/sensor_recorder_model.dart';
 
@@ -32,8 +35,6 @@ class _MyBottomBarState extends State<MyBottomBar> {
     );
   }
 
-  void _stopRecording() {
-    return null;
   void _confirmRecordingStart() async {
     await showModalBottomSheet(
       context: context,
@@ -146,22 +147,6 @@ class _MyBottomBarState extends State<MyBottomBar> {
         ),
       ),
     );
-    /*showDialog(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: Text('Start new recording?'),
-        content: Text('Please select an activity and press Start to continue.'),
-        actions: <Widget>[
-          Row(
-
-          ),
-          Row
-        ],
-      ),
-    );*/
-  }
-
-
   }
 
   void _stopRecording() {
