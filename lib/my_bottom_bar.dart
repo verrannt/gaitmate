@@ -98,7 +98,7 @@ class _MyBottomBarState extends State<MyBottomBar> {
   }
   }
 
-  void _confirmRecording() {
+  void _confirmRecordingStop() {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) => Container(
@@ -116,27 +116,19 @@ class _MyBottomBarState extends State<MyBottomBar> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
-                child: Text('Start new recording?',
+                child: Text('Stop current recording?',
                     style: TextStyle(fontSize: 22, color: Colors.black87)
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Text(
-                    'To start a new activity recording, please select an activity from '
-                        'below or type one in in the text field.\n\nNote: the name of the activty will '
-                        'also be used for the filename.'
-                ),
-              ),
               FlatButton(
-                color: Colors.green,
+                color: Colors.red,
                 textColor: Colors.white,
                 disabledColor: Colors.grey,
                 disabledTextColor: Colors.black,
                 padding: EdgeInsets.all(16.0),
                 splashColor: Colors.grey,
-                onPressed: _startRecording,
-                child: Text('Start Recording',
+                onPressed: _stopRecording,
+                child: Text('Confirm',
                     style: TextStyle(fontSize: 20.0)),
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(30.0),
@@ -172,13 +164,15 @@ class _MyBottomBarState extends State<MyBottomBar> {
     Navigator.pop(context);
   }
 
-  void _endRecording() {
+  void _stopRecording() {
     // Todo
     // 1. save recording to storage
     // 2. show success dialog:
     //   a. show name of saved activity
     //   b. offer to go to past recordings
-    return null;
+    Provider.of<SensorRecorderModel>(context, listen: false).stopRecording();
+    // Exit modal dialog
+    Navigator.pop(context);
   }
 
   Widget isNotRecordingBar() {
