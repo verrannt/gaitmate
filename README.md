@@ -12,7 +12,7 @@ A flutter android app that records user's motion activity via smartphone sensor 
 
 ### Stored Data
 
-The recordings are stored in `/storage/emulated/0/Android/org.athical.gaitmate/files/` as .csv files. They consist of three columns, the first of which represents the accelerometer values, the second the userAccelerometer values, and the third the gyroscope values. The rows represent instances in time, sampled at 5ms intervals. The sensor values at each time-step consist of a list of decimal numbers for the three dimensions x, y, z, in that order.
+The recordings are stored in `/storage/emulated/0/Android/data/org.athical.gaitmate/files/` as .csv files. They consist of three columns, the first of which represents the accelerometer values, the second the userAccelerometer values, and the third the gyroscope values. The rows represent instances in time, sampled at 5ms intervals. The sensor values at each time-step consist of a list of decimal numbers for the three dimensions x, y, z, in that order.
 
 ### Download
 
