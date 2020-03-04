@@ -109,10 +109,10 @@ class _MyBottomBarState extends State<MyBottomBar> {
   void _confirmRecordingStop() {
     showModalBottomSheet(
       context: context,
-      builder: (BuildContext context) => Container(
-        color: Colors.white,
-        height: 380,
+      builder: (BuildContext context) => FractionallySizedBox(
+        heightFactor: 0.66,
         child: Container(
+          padding: EdgeInsets.only(left: 24.0, right: 24.0),
           decoration: BoxDecoration(
             color: Theme.of(context).canvasColor,
             borderRadius: BorderRadius.only(
@@ -121,22 +121,25 @@ class _MyBottomBarState extends State<MyBottomBar> {
             ),
           ),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: Text('Stop current recording?',
-                    style: TextStyle(fontSize: 22, color: Colors.black87)
-                ),
+              Text('Stop current recording?',
+                style: TextStyle(fontSize: 22, color: Colors.black87)
+              ),
+              Text(
+                'If you stop the current recording, it will be saved locally '
+                'as .csv with the activity and current date-time as name.',
+                style: TextStyle(fontSize: 16),
               ),
               FlatButton(
                 color: Colors.red,
                 textColor: Colors.white,
                 disabledColor: Colors.grey,
                 disabledTextColor: Colors.black,
-                padding: EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(18.0),
                 splashColor: Colors.grey,
                 onPressed: _stopRecording,
-                child: Text('Confirm',
+                child: Text('Stop Recording',
                     style: TextStyle(fontSize: 20.0)),
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(30.0),
@@ -145,7 +148,7 @@ class _MyBottomBarState extends State<MyBottomBar> {
             ],
           ),
         ),
-      ),
+      )
     );
   }
 
