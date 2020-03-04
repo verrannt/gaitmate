@@ -8,7 +8,7 @@ import 'package:gaitmate/models/sensor_recorder_model.dart';
 
 class DataPresentation extends StatefulWidget {
   @override
-_DataPresentationState createState() => _DataPresentationState();
+  _DataPresentationState createState() => _DataPresentationState();
 }
 
 class _DataPresentationState extends State<DataPresentation> {
@@ -17,7 +17,7 @@ class _DataPresentationState extends State<DataPresentation> {
     return Column(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 20.0, bottom: 10.0),
+          padding: const EdgeInsets.only(top: 40.0, bottom: 20.0),
           child: Text('Current Sensor Data',
               style: TextStyle(fontSize: 20, color: Colors.black87)
           ),
