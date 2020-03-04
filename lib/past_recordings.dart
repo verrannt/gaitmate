@@ -13,12 +13,14 @@ class _PastRecordingsPageState extends State<PastRecordingsPage> {
         title: Text('Past Recordings'),
       ),
       body: Center(
+      /*Center(
         child: RaisedButton(
           child: Text('Go back'),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-      ),
-    );  }
+      ),*/
+    );
+  }
 }
