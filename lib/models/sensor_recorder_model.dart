@@ -49,8 +49,10 @@ class SensorRecorderModel extends ChangeNotifier {
 
   void stopRecording() {
     // Parse filename with activityType and timestemp
-    DateTime now = DateTime.now();
-    final filename = '${_activityType}_$now.csv';
+    final DateTime now = DateTime.now();
+    final date = now.toString().split(' ')[0];
+    final time = now.toString().split(' ')[1].split('.')[0];
+    final filename = '${_activityType}_$date--$time.csv';
     safeRecordedData(filename);
     _isRecording = false;
     _activityType = '';
