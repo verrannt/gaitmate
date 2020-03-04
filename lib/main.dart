@@ -7,20 +7,14 @@ import 'package:gaitmate/models/sensor_recorder_model.dart';
 void main() {
   runApp(
     ChangeNotifierProvider(
-      child: MyApp(),
       create: (context) => SensorRecorderModel(),
+      child: MaterialApp(
+        title: 'GaitMate',
+        theme: ThemeData(
+          primarySwatch: Colors.indigo,
+          primaryColor: Colors.indigo[500]),
+        home: MyHomePage(title: 'GaitMate')),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'GaitMate',
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-        primaryColor: Colors.indigo[500]),
-      home: MyHomePage(title: 'GaitMate'));
-  }
-}
