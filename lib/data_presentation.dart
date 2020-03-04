@@ -67,7 +67,7 @@ class _DataPresentationState extends State<DataPresentation> {
             ],
           ),
         ),
-        Padding(
+        /*Padding(
           padding: const EdgeInsets.only(top: 20.0, bottom: 10.0),
           child: Text('Current Location',
               style: TextStyle(fontSize: 20, color: Colors.black87)
@@ -87,8 +87,8 @@ class _DataPresentationState extends State<DataPresentation> {
               ],
             ),
             padding: const EdgeInsets.only(top: 10.0, bottom: 20.0)
-        ),
-        Flexible(
+        ),*/
+        /*Flexible(
           child: FlutterMap(
             options: MapOptions(
               center: LatLng(37.7, -122.4),
@@ -107,7 +107,7 @@ class _DataPresentationState extends State<DataPresentation> {
               //MarkerLayerOptions(markers: null)
             ],
           ),
-        ),
+        ),*/
       ],
     );
   }
