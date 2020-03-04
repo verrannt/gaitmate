@@ -109,8 +109,7 @@ class _MyBottomBarState extends State<MyBottomBar> {
     return null;
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget isNotRecordingBar() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       //mainAxisSize: MainAxisSize.min,
@@ -133,11 +132,51 @@ class _MyBottomBarState extends State<MyBottomBar> {
           disabledTextColor: Colors.black,
           padding: EdgeInsets.all(20.0),
           splashColor: Colors.indigo[50],
-          onPressed: _confirmRecording,
+          onPressed: _confirmRecordingStart,
           child: Text('New Recording',
               style: TextStyle(fontSize: 20.0)),
-        )
-      ],
+        ),
+      ]
+    );
+  }
+
+  Widget isRecordingBar() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Text('Stop current recording:',
+              style: TextStyle(fontSize: 18, color: Colors.black87)
+          ),
+        ),
+        FlatButton(
+          color: Colors.white,
+          textColor: Colors.indigo,
+          disabledColor: Colors.grey,
+          disabledTextColor: Colors.black,
+          padding: EdgeInsets.all(20.0),
+          splashColor: Colors.indigo[50],
+          onPressed: _confirmRecordingStop,
+          child: Text('Stop',
+              style: TextStyle(fontSize: 20.0)),
+        ),
+      ]
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<SensorRecorderModel>(
+      builder: (context, recorder, child) {
+        // If recording, return different UI
+        if (recorder.isRecording == false) {
+          return isNotRecordingBar();
+        } else {
+          return isRecordingBar();
+        }
+      },
     );
   }
 }
