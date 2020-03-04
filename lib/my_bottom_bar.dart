@@ -24,6 +24,68 @@ class _MyBottomBarState extends State<MyBottomBar> {
 
   void _stopRecording() {
     return null;
+  void _confirmRecordingStart() async {
+    await showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        String _selectedActivity = _activityDropdownMenuItems[0].value;
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return FractionallySizedBox(
+              heightFactor: 0.66,
+              child: Container(
+                padding: EdgeInsets.only(left: 24.0, right: 24.0),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).canvasColor,
+                  borderRadius: BorderRadius.only(
+                    topLeft: const Radius.circular(16.0),
+                    topRight: const Radius.circular(16.0),
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Text('Start new recording?',
+                      style: TextStyle(fontSize: 22)
+                    ),
+                    Text(
+                      'To start a new activity recording, please select '
+                      'an activity from below.',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    DropdownButton(
+                      value: _selectedActivity,
+                      items: _activityDropdownMenuItems,
+                      onChanged: (String selectedActivity) {
+                        setState(() => _selectedActivity = selectedActivity);
+                      },
+                      isExpanded: true,
+                      isDense: false,
+                      itemHeight: 56.0,
+                    ),
+                    FlatButton(
+                      color: Colors.green,
+                      textColor: Colors.white,
+                      disabledColor: Colors.grey,
+                      disabledTextColor: Colors.black,
+                      padding: EdgeInsets.all(18.0),
+                      splashColor: Colors.grey,
+                      onPressed: () => _startRecording(_selectedActivity),
+                      child: Text('Start Recording',
+                        style: TextStyle(fontSize: 20.0)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(30.0),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
+        );
+      }
+    );
+  }
   }
 
   void _confirmRecording() {
