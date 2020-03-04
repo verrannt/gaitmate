@@ -1,3 +1,5 @@
+[![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.png?v=103)](https://opensource.org/licenses/GPL-3.0/)
+
 # GaitMate
 
 ### Easily record smartphone sensor data
